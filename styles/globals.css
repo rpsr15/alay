@@ -1,9 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Playfair Display', serif;
+
+}
+
+input {
+  border-color: #2F2E2E !important;
+  font-family: 'Playfair Display', serif!important;
+
+}
+
+input:focus {
+  border-color: #2F2E2E !important;
+  border-width: 2px !important;
 }
 
 a {
@@ -13,4 +28,48 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.pac-container:after {
+  /* Disclaimer: not needed to show 'powered by Google' if also a Google Map is shown */
+
+  background-image: none !important;
+  height: 0px;
+}
+
+.pac-icon {
+  display: none !important;
+}
+
+input {
+  border-radius: 0 !important;
+}
+
+.content {
+  padding: 20px!important;
+  background-color: #ECECEC!important;
+}
+
+label {
+  font-family: 'Playfair Diplay',serif !important;
+}
+
+.title, p, button {
+ 
+  font-family: 'Playfair Diplay',serif !important;
+}
+
+
+button {
+  border-radius: 0!important;
+}
+
+.ui .item {
+  font-family: 'Playfair Diplay',serif !important;
+}
+
+.ui.tabular.menu {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
