@@ -1,4 +1,4 @@
-import React, { useEffect,useState  } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { MapContainer, TileLayer, useMap, useMapEvents, useMapEvent } from "react-leaflet";
 import styled from "styled-components";
 import "leaflet/dist/leaflet.css";
@@ -17,50 +17,48 @@ const StyledMapContainer = styled(MapContainer)`
   }
 `;
 
-
-
 // Todo move style urls to .env file
-const Map = ({ onCenterChange, position, zoom, style }) => {
-
-  function MyComponent({ onCenterChange, mapCentre }) {
-    const map = useMapEvents({
+const Map = ({ position, zoom, style, onMapPropertiesChange }) => {
+  const [map, setMap] = useState(null);
+  function MapEvents() {
+    const map = useMap();
+    const currentMap = useMapEvents({
+      zoomend: () => {
+        onMapPropertiesChange([map.getCenter().lat, map.getCenter().lng], map.getZoom());
+      },
       moveend: () => {
-        console.log("insdie mycomponent", map.getCenter());
-        onCenterChange(map.getCenter());
+        onMapPropertiesChange([map.getCenter().lat, map.getCenter().lng], map.getZoom());
       },
     });
+
     return null;
   }
-  function UpdateMapCentre({ mapCentre }) {
-
-   const map = useMap();
-   console.log('inside update map centre')
-   // map.panTo(mapCentre);
-    return null;
-  }
-
   useEffect(() => {
-    console.log("map rerender", position);
+    if (map !== null && position[0] !== map.getCenter().lat) {
+      map.panTo(position);
+    }
   }, [position]);
 
   return (
-    <StyledMapContainer
-      minZoom={11}
-      maxZoom={15}
-      zoomSnap={0.25}
-      zoomDelta={0.25}
-      center={position}
-      zoom={zoom}
-      scrollWheelZoom={false}>
-      <TileLayer detectRetina={true} url={styles[style].url} />
-      <MyComponent onCenterChange={onCenterChange} />
-      {/* <UpdateMapCentre mapCentre={position} /> */}
-    </StyledMapContainer>
+    <div>
+      <StyledMapContainer
+        ref={setMap}
+        minZoom={10}
+        maxZoom={15}
+        zoomSnap={0.25}
+        zoomDelta={0.25}
+        center={position}
+        zoom={zoom}
+        scrollWheelZoom={false}>
+        <TileLayer detectRetina={true} url={styles[style].url} />
+        <MapEvents />
+      </StyledMapContainer>
+    </div>
   );
-};
+}
 
 Map.defaultProps = {
   style: "modern",
 };
 
-export default Map;
+export default memo(Map);

@@ -7,15 +7,10 @@ const MapWithNoSSR = dynamic(() => import("../components/MapWrapper"), {
 });
 
 export default function editorPage(props) {
-
- 
-
-
- const handleFrameChange = (data) => { 
-   console.log(data)
-   setValue(data)
+  const handleFrameChange = (data) => {
+    console.log(data)
+    setValue(data)
   }
-
 
   return (
     <div >

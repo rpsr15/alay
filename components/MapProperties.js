@@ -1,39 +1,31 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, memo } from "react";
 import { Accordion, Icon, Input, Button, Form, List, Label, Checkbox, Tab } from "semantic-ui-react";
 import ButtonRadio from "./ButtonRadio";
 import InputSearch from "./InputSearch";
 import React from "react";
 import InputLabel from "./InputLabel";
-import { Pane } from "react-leaflet";
+
+
+
 
 const MapProperties = (props) => {
-  const [title, setTitle] = useState(title);
-  const [divider, setDivider] = useState(divider);
   const [tagline, setTagline] = useState(tagline);
-  const handleFrameSizeCheckboxChange = (value) => {
-    setFrameSize(value);
-  };
   const onPlaceSelect = (newPlace) => {
-    console.log("on place select", newPlace);
     props.onPlaceChange(newPlace);
   };
   const handleTitleChange = (e) => {
-    props.onTitleChange(e.target.value);
+    //setTitle(e.target.value)
+     props.onTitleChange(e.target.value);
   };
   const handleDividerChange = (e) => {
-    setDivider(e.target.value);
     props.onDividerChange(e.target.value);
   };
   const handleTagLineChange = (e) => {
-    setTagline(e.target.value);
     props.onTagLineChange(e.target.value);
   };
-  useEffect(() => {
-    console.log("map propeoties rerender")
-
-
-  }, [])
-
+  const setFrameSize = (value) => { 
+    props.onFrameSizeChange(value)
+  }
   return (
     <div>
       {/* <DesktopPane
@@ -44,22 +36,117 @@ const MapProperties = (props) => {
         divider={props.divider}
         tagline={props.tagline}
       /> */}
-      <MobilePane
+      <MemoizedMobilepane
         onPlaceSelect={onPlaceSelect}
-        geoLocation={props.geoLocation}
         handleTitleChange={handleTitleChange}
         handleDividerChange={handleDividerChange}
         handleTagLineChange={handleTagLineChange}
+        frameSize={props.frameSize}
         title={props.title}
         divider={props.divider}
         tagline={props.tagline}
+        setFrameSize={setFrameSize}
       />
     </div>
   );
-};
-
-
-const DesktopPane = ({ title, divider, tagline, handleTitleChange, handleDividerChange, handleTagLineChange }) => {
+}
+const MobilePane = ({ setFrameSize, frameSize, title, divider, tagline, handleTitleChange, handleDividerChange, handleTagLineChange, onPlaceSelect}) => {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const handleFrameSizeCheckboxChange = (frameSize) => {
+    //console.log(frameSize);
+    setFrameSize(frameSize)
+  };
+  const panes = [
+    {
+      menuItem: "Location",
+      render: () => (
+        <Tab.Pane>
+          <div>
+            <InputSearch
+              onPlaceSelect={onPlaceSelect}
+              centre={Geolocation}
+              className='w-full'
+              action={{
+                icon: "search",
+              }}
+              placeholder='Enter place'
+              type='text'
+            />
+          </div>
+        </Tab.Pane>
+      ),
+    },
+    { menuItem: "Style", render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
+    {
+      menuItem: "Text",
+      render: () => (
+        <div>
+          <Tab.Pane>
+            {" "}
+            <div className='flex justify-between pb-2.5'>
+              <InputLabel>Title</InputLabel>
+              <Input type='text' value={title} onChange={handleTitleChange} />
+            </div>
+            <div className='flex justify-between pb-2.5'>
+              <InputLabel>Divider</InputLabel>
+              <Input type='text' value={divider} onChange={handleDividerChange} />
+            </div>
+            <div className='flex justify-between pb-2.5'>
+              <InputLabel>Tagline</InputLabel>
+              <Input type='text' value={tagline} onChange={handleTagLineChange} />
+            </div>
+          </Tab.Pane>
+        </div>
+      ),
+    },
+    {
+      menuItem: "Size",
+      render: () => (
+        <Tab.Pane>
+          <div>
+            <ButtonRadio
+              value={"small"}
+              checked={frameSize === "small" ? true : false}
+              label={"Small 11x17cm"}
+              price={"$1000"}
+              onChange={handleFrameSizeCheckboxChange}
+            />
+            <ButtonRadio
+              value={"medium"}
+              checked={frameSize === "medium" ? true : false}
+              label={"Medium 18x24cm"}
+              price={"$1000"}
+              onChange={handleFrameSizeCheckboxChange}
+            />
+            <ButtonRadio
+              value={"large"}
+              checked={frameSize === "large" ? true : false}
+              label={"Large 24x36cm"}
+              price={"$1000"}
+              onChange={handleFrameSizeCheckboxChange}
+            />
+          </div>
+        </Tab.Pane>
+      ),
+    },
+  ];
+  const onClick = (e, { activeIndex }) => {
+    setActiveIndex(activeIndex)
+    // TODO: click will get properties on viewport.
+    // scroll into view is working on 2nd click not on first click
+  };
+  return <Tab activeIndex={activeIndex} panes={panes} onTabChange={onClick} />;
+}
+const MemoizedMobilepane = memo(MobilePane)
+const DesktopPane = ({
+  title,
+  divider,
+  tagline,
+  handleTitleChange,
+  handleDividerChange,
+  handleTagLineChange,
+  frameSize,
+}) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const handleClick = (e, titleProps) => {
     console.log(titleProps);
@@ -94,75 +181,4 @@ const DesktopPane = ({ title, divider, tagline, handleTitleChange, handleDivider
   );
 };
 
-const MobilePane = ({ onPlaceSelect, title, divider, tagline, handleTitleChange, handleDividerChange, handleTagLineChange }) => {
-
-  useEffect(() => {
-    console.log("mobile pan rerender")
-
-
-  }, [])
-
-  const panes = [
-    {
-      menuItem: "Location", render: () => <Tab.Pane><div>
-        <InputSearch
-          onPlaceSelect={onPlaceSelect}
-          centre={Geolocation}
-          className="w-full"
-          action={{
-            icon: 'search'
-          }}
-          placeholder="Enter place"
-          type="text" />
-        <div
-          className="flex flex-row justify-between mt-2"
-        >
-          <div className=" inline-block align-middle">
-            <div className="text-xs inline-block align-middle">
-              or use your current GPS position
-            </div>
-          </div>
-          <div>
-            <Button className="text-xs mr-0">Locate me</Button>
-          </div>
-        </div>
-      </div></Tab.Pane>
-    },
-    { menuItem: "Style", render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
-    {
-      menuItem: "Text",
-      render: () => (
-        <div >
-          <Tab.Pane>
-            {" "}
-            <div className='flex justify-between pb-2.5'>
-              <InputLabel>Title</InputLabel>
-              <Input type='text' value={title} onChange={handleTitleChange} />
-            </div>
-
-            <div className='flex justify-between pb-2.5'>
-              <InputLabel>Divider</InputLabel>
-              <Input type='text' value={divider} onChange={handleDividerChange} />
-            </div>
-
-            <div className='flex justify-between pb-2.5' >
-              <InputLabel>Tagline</InputLabel>
-              <Input type='text' value={tagline} onChange={handleTagLineChange} />
-            </div>
-          </Tab.Pane>
-        </div>
-      ),
-    },
-    { menuItem: "Size", render: () => <Tab.Pane>Tab 4 Content</Tab.Pane> },
-  ];
-  const onClick = () => {
-    // TODO: click will get properties on viewport.
-    // scroll into view is working on 2nd click not on first click
-  }
-  return (<Tab
-    panes={panes}
-    onClick={onClick}
-  />)
-}
-
-export default MapProperties;
+export default memo(MapProperties);

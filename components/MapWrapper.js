@@ -4,51 +4,64 @@ import Map from "./Map";
 import Frame from "./Frame";
 
 const MapWrapper = (props) => {
-  const [position, setPosition] = useState([18.95417755470588, 72.8551981450371]);
-  const [zoom, setZoom] = useState(11.5);
-  const [title, setTitle] = useState("Mumbai");
-  const [divider, setDivider] = useState("INDIA");
-  const [tagline, setTagline] = useState("19.075°N / 72.877°E");
   const [mapData, setMapData] = useState({
-    position: "dfdf",
+    position: [18.95417755470588, 72.8551981450371],
     zoom: 11.5,
     title: "Mumbai",
-    divider:"INDIA",
-    tagline: "19.075°N / 72.877°E"
+    divider: "INDIA",
+    tagline: "19.075°N / 72.877°E",
+    frameSize: "small",
   });
-  const updateTagline = (place) => {
-    const newTagLine =
-      place.geometry.location.lat().toString().substring(0, 6) +
-      "°N / " +
-      place.geometry.location.lng().toString().substring(0, 6);
-    setTagline(newTagLine);
-  };
-  const onPlaceChange = (place) => {
-    setTitle(place.name);
-    console.log("changin place", place);
-    setPosition([place.geometry.location.lat(), place.geometry.location.lng()]);
-    // updateTagline(place);
+  const getTagline = (lat, lng) => {
+    console.log('gettagline', lat, lng)
+    const newTagLine = lat.substr(0, 6) + "°N / " + lng.substr(0, 6) + "°E";
+    return newTagLine;
   };
 
-  const onTitleChange = (newTitle) => {
-    setTitle(newTitle);
-  };
-  const onDividerChange = (newDivider) => {
-    setDivider(newDivider);
-  };
-  const onTagLineChange = (newTagLine) => {
-    setTagline(newTagLine);
-  };
-  const handleZoomStart = () => {
-    console.log("mewo mowe");
-  };
-  const onCenterChange = useCallback(
-    (newCenter) => {
-      console.log("usecallback", newCenter);
-      setPosition([newCenter.lat, newCenter.lng]);
-      //  setGeoLocation(newCenter);
+  const onPlaceChange = useCallback((place) => {
+    const lat = place.geometry.location.lat();
+    const lng = place.geometry.location.lng();
+    const newTagline = getTagline(lat + "", lng + "");
+    setMapData({
+      ...mapData,
+      title: place.name,
+      position: [lat, lng],
+      tagline: newTagline,
+    });
+  }, []);
+  const onTitleChange = useCallback(
+    (newTitle) => {
+      setMapData({ ...mapData, title: newTitle });
     },
-    [position]
+    [mapData.title]
+  );
+
+  const onDividerChange = useCallback(
+    (newDivider) => {
+      setMapData({ ...mapData, divider: newDivider });
+    },
+    [mapData.tagline]
+  );
+  const onTagLineChange = useCallback(
+    (tagline) => {
+      setMapData({ ...mapData, tagline: newTagLine });
+    },
+    [mapData.tagline]
+  );
+  const handleMapPropertiesChange = useCallback(
+    (newPosition, newZoom) => {
+      console.log("handle  map  propertie chnage", newPosition[0]);
+      
+      setMapData({ ...mapData, position: newPosition, zoom: newZoom, tagline: getTagline(newPosition[0]+"", newPosition[1]+"") });
+    },
+    [mapData.position]
+  );
+
+  const onFrameSizeChange = useCallback(
+    (newFrameSize) => {
+      setMapData({ ...mapData, frameSize: newFrameSize });
+    },
+    [mapData.frameSize]
   );
 
   return (
@@ -58,24 +71,21 @@ const MapWrapper = (props) => {
           id='frame-container'
           className='lg:w-7/12 py-14 flex items-center justify-center'
           style={{ backgroundColor: "#E5E5E5" }}>
-          <Frame title={title} divider={divider} tagline={tagline}>
-            <div style={{ zoom: 0.67, overflow: "hidden" }}>
-              <Map
-                onCenterChange={onCenterChange}
-                position={position}
-                zoom={zoom}
-                //handleZoomStart={handleZoomStart}
-              />
-            </div>
+          <Frame title={mapData.title} divider={mapData.divider} tagline={mapData.tagline}>
+          <div style={{ zoom: 0.67, overflow: "hidden" }}>
+            <Map position={mapData.position} zoom={mapData.zoom} onMapPropertiesChange={handleMapPropertiesChange} />
+          </div>
           </Frame>
         </div>
 
         <div className='w-full lg:w-5/12'>
           <MapProperties
-            position={position}
-            title={title}
-            divider={divider}
-            tagline={tagline}
+            position={mapData.Dataposition}
+            title={mapData.title}
+            divider={mapData.divider}
+            tagline={mapData.tagline}
+            frameSize={mapData.frameSize}
+            onFrameSizeChange={onFrameSizeChange}
             onPlaceChange={onPlaceChange}
             onTitleChange={onTitleChange}
             onDividerChange={onDividerChange}

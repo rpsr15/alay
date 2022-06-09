@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { memo } from "react";
 const Frame = (props) => {
   return (
     <div className=' shadow-2xl' style={{ backgroundColor: "white", padding: "8px" }}>
@@ -23,4 +23,4 @@ const Frame = (props) => {
     </div>
   );
 };
-export default Frame;
+export default memo(Frame);
