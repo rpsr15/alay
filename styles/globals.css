@@ -73,3 +73,21 @@ button {
   flex-direction: row;
   justify-content: space-between;
 }
+
+.ui.bottom.attached.segment.active.tab {
+  background-color: #eef0f6;
+}
+
+a{
+  text-decoration: none!important;
+}
+
+
+.frameTypeActive{
+  background-color:#2F394a;
+  color: white,  !important;;
+}
+
+.frameTypeActive .content-title{
+  color:white;
+}

@@ -1,7 +1,8 @@
-import React, { useEffect, useState, memo } from "react";
+import React, { useEffect, useState, memo, useContext } from "react";
 import { MapContainer, TileLayer, useMap, useMapEvents, useMapEvent } from "react-leaflet";
 import styled from "styled-components";
 import "leaflet/dist/leaflet.css";
+import { mapDataContext } from "../hooks/useAuth";
 const styles = {
   modern: {
     url: "https://api.mapbox.com/styles/v1/ravirathore15/ckp8gw7yk052917pkug0835rd/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmF2aXJhdGhvcmUxNSIsImEiOiJja29wdGs0NDQwbW1wMm5zejI3bXR3Z2Y3In0.7KwUAoANdedvKM9WpldNTg",
@@ -18,26 +19,27 @@ const StyledMapContainer = styled(MapContainer)`
 `;
 
 // Todo move style urls to .env file
-const Map = ({ position, zoom, style, onMapPropertiesChange }) => {
+const Map = ({ style, setMapRef }) => {
+  const mapData = useContext(mapDataContext);
   const [map, setMap] = useState(null);
   function MapEvents() {
     const map = useMap();
     const currentMap = useMapEvents({
       zoomend: () => {
-        onMapPropertiesChange([map.getCenter().lat, map.getCenter().lng], map.getZoom());
+        mapData.setZoom(map.getZoom());
       },
       moveend: () => {
-        onMapPropertiesChange([map.getCenter().lat, map.getCenter().lng], map.getZoom());
+        mapData.setPosition([map.getCenter().lat, map.getCenter().lng]);
       },
     });
 
     return null;
   }
   useEffect(() => {
-    if (map !== null && position[0] !== map.getCenter().lat) {
-      map.panTo(position);
+    if (map !== null && mapData.position[0] !== map.getCenter().lat) {
+      map.panTo(mapData.position);
     }
-  }, [position]);
+  }, [mapData.position]);
 
   return (
     <div>
@@ -47,15 +49,15 @@ const Map = ({ position, zoom, style, onMapPropertiesChange }) => {
         maxZoom={15}
         zoomSnap={0.25}
         zoomDelta={0.25}
-        center={position}
-        zoom={zoom}
+        center={mapData.position}
+        zoom={mapData.zoom}
         scrollWheelZoom={false}>
         <TileLayer detectRetina={true} url={styles[style].url} />
         <MapEvents />
       </StyledMapContainer>
     </div>
   );
-}
+};
 
 Map.defaultProps = {
   style: "modern",

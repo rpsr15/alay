@@ -12,18 +12,33 @@ export const MapDataContextProvider = (props) => {
   const [zoom, setZoom] = useState(11.5);
   const [position, setPosition] = useState([18.95417755470588, 72.8551981450371]);
   const [frameSize, setFrameSize] = useState("small");
-
-  return(
+  const [frameType, setFrameType] = useState("hanger");
+  const [frameColor, setFrameColor] = useState("natural");
+  return (
     <mapDataContext.Provider
-    value={{ title, divider, tagline, zoom, position, frameSize, setTitle, setDivider, setTagline, setZoom, setPosition, setFrameSize}}
-    >{props.children}</mapDataContext.Provider>
-  )
+      value={{
+        title,
+        divider,
+        tagline,
+        zoom,
+        position,
+        frameSize,
+        setTitle,
+        setDivider,
+        setTagline,
+        setZoom,
+        setPosition,
+        setFrameSize,
+        setFrameType,
+        setFrameColor
+      }}>
+      {props.children}
+    </mapDataContext.Provider>
+  );
 };
-
 export const AuthContextProvider = (props) => {
   const [user, setUser] = useState(null);
   const [usr, loading, error] = useAuthState(auth);
-
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       console.log("onAuthStateChanged");
@@ -35,7 +50,6 @@ export const AuthContextProvider = (props) => {
       }
     });
   }, []);
-
   const signUp = async (data) => {
     console.log("signup", data);
     try {
@@ -44,7 +58,6 @@ export const AuthContextProvider = (props) => {
       throw new Error(error);
     }
   };
-
   const logIn = async (email, password) => {
     console.log("log in");
     try {
@@ -53,7 +66,6 @@ export const AuthContextProvider = (props) => {
       throw new Error(error);
     }
   };
-
   const logOut = async () => {
     try {
       const result = await signOut(auth);
@@ -61,7 +73,6 @@ export const AuthContextProvider = (props) => {
       throw new Error(error);
     }
   };
-
   return (
     <authContext.Provider value={{ user, loading, error, usr, logIn, logOut, signUp }}>
       {props.children}

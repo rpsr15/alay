@@ -1,31 +1,41 @@
-import { useState, useEffect, useRef, memo } from "react";
-import { Accordion, Icon, Input, Button, Form, List, Label, Checkbox, Tab } from "semantic-ui-react";
-import ButtonRadio from "./ButtonRadio";
-import InputSearch from "./InputSearch";
+import { useState, useContext, memo } from "react";
+import { Accordion, Icon, Input } from "semantic-ui-react";
+
 import React from "react";
 import InputLabel from "./InputLabel";
+import MobilePane from "./MobilePane";
+import { mapDataContext } from "../hooks/useAuth";
 
-
-
+const getTagline = (lat, lng) => {
+  console.log("gettagline", lat, lng);
+  const newTagLine = lat.substr(0, 6) + "°N / " + lng.substr(0, 6) + "°E";
+  return newTagLine;
+};
 
 const MapProperties = (props) => {
-  const [tagline, setTagline] = useState(tagline);
-  const onPlaceSelect = (newPlace) => {
-    props.onPlaceChange(newPlace);
+  const mapData = useContext(mapDataContext);
+
+  const onPlaceSelect = (place) => {
+    const lat = place.geometry.location.lat();
+    const lng = place.geometry.location.lng();
+    const newTagline = getTagline(lat + "", lng + "");
+    mapData.setTitle(place.name);
+    mapData.setPosition([lat, lng]);
+    mapData.setTagline(newTagline);
   };
   const handleTitleChange = (e) => {
-    //setTitle(e.target.value)
-     props.onTitleChange(e.target.value);
+    mapData.setTitle(e.target.value);
   };
   const handleDividerChange = (e) => {
-    props.onDividerChange(e.target.value);
+    mapData.setDivider(e.target.value);
   };
   const handleTagLineChange = (e) => {
+    //todo: generatetagline and  update
     props.onTagLineChange(e.target.value);
   };
-  const setFrameSize = (value) => { 
-    props.onFrameSizeChange(value)
-  }
+  const setFrameSize = (value) => {
+    mapData.setFrameSize(value);
+  };
   return (
     <div>
       {/* <DesktopPane
@@ -36,108 +46,22 @@ const MapProperties = (props) => {
         divider={props.divider}
         tagline={props.tagline}
       /> */}
-      <MemoizedMobilepane
+      <MobilePane
         onPlaceSelect={onPlaceSelect}
         handleTitleChange={handleTitleChange}
         handleDividerChange={handleDividerChange}
         handleTagLineChange={handleTagLineChange}
-        frameSize={props.frameSize}
-        title={props.title}
-        divider={props.divider}
-        tagline={props.tagline}
+        frameSize={mapData.frameSize}
+        title={mapData.title}
+        divider={mapData.divider}
+        tagline={mapData.tagline}
+        position={mapData.position}
         setFrameSize={setFrameSize}
       />
     </div>
   );
-}
-const MobilePane = ({ setFrameSize, frameSize, title, divider, tagline, handleTitleChange, handleDividerChange, handleTagLineChange, onPlaceSelect}) => {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const handleFrameSizeCheckboxChange = (frameSize) => {
-    //console.log(frameSize);
-    setFrameSize(frameSize)
-  };
-  const panes = [
-    {
-      menuItem: "Location",
-      render: () => (
-        <Tab.Pane>
-          <div>
-            <InputSearch
-              onPlaceSelect={onPlaceSelect}
-              centre={Geolocation}
-              className='w-full'
-              action={{
-                icon: "search",
-              }}
-              placeholder='Enter place'
-              type='text'
-            />
-          </div>
-        </Tab.Pane>
-      ),
-    },
-    { menuItem: "Style", render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
-    {
-      menuItem: "Text",
-      render: () => (
-        <div>
-          <Tab.Pane>
-            {" "}
-            <div className='flex justify-between pb-2.5'>
-              <InputLabel>Title</InputLabel>
-              <Input type='text' value={title} onChange={handleTitleChange} />
-            </div>
-            <div className='flex justify-between pb-2.5'>
-              <InputLabel>Divider</InputLabel>
-              <Input type='text' value={divider} onChange={handleDividerChange} />
-            </div>
-            <div className='flex justify-between pb-2.5'>
-              <InputLabel>Tagline</InputLabel>
-              <Input type='text' value={tagline} onChange={handleTagLineChange} />
-            </div>
-          </Tab.Pane>
-        </div>
-      ),
-    },
-    {
-      menuItem: "Size",
-      render: () => (
-        <Tab.Pane>
-          <div>
-            <ButtonRadio
-              value={"small"}
-              checked={frameSize === "small" ? true : false}
-              label={"Small 11x17cm"}
-              price={"$1000"}
-              onChange={handleFrameSizeCheckboxChange}
-            />
-            <ButtonRadio
-              value={"medium"}
-              checked={frameSize === "medium" ? true : false}
-              label={"Medium 18x24cm"}
-              price={"$1000"}
-              onChange={handleFrameSizeCheckboxChange}
-            />
-            <ButtonRadio
-              value={"large"}
-              checked={frameSize === "large" ? true : false}
-              label={"Large 24x36cm"}
-              price={"$1000"}
-              onChange={handleFrameSizeCheckboxChange}
-            />
-          </div>
-        </Tab.Pane>
-      ),
-    },
-  ];
-  const onClick = (e, { activeIndex }) => {
-    setActiveIndex(activeIndex)
-    // TODO: click will get properties on viewport.
-    // scroll into view is working on 2nd click not on first click
-  };
-  return <Tab activeIndex={activeIndex} panes={panes} onTabChange={onClick} />;
-}
-const MemoizedMobilepane = memo(MobilePane)
+};
+
 const DesktopPane = ({
   title,
   divider,
