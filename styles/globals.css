@@ -2,11 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-oyster-bay: #D5EAEC;
+  --color-oyster-bay-light: #F1F8F95;
+  --color-oyster-bay-dark: #AABBBD
+}
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: 'Playfair Display', serif;
+  font-weight: 400!important;
 
 }
 
@@ -27,7 +33,7 @@ a {
 }
 
 * {
-  box-sizing: border-box;
+  box-sizing: border-box!important;
 }
 
 .pac-container:after {
@@ -60,8 +66,9 @@ label {
 }
 
 
-button {
-  border-radius: 0!important;
+button.ui.button {
+  border-radius: 0;
+  font-weight: 400 ;
 }
 
 .ui .item {
@@ -74,20 +81,33 @@ button {
   justify-content: space-between;
 }
 
-.ui.bottom.attached.segment.active.tab {
-  background-color: #eef0f6;
-}
 
 a{
   text-decoration: none!important;
 }
 
 
-.frameTypeActive{
-  background-color:#2F394a;
-  color: white,  !important;;
+
+
+a.item {
+ background-color: #F7F7F7 !important;
+}
+a.item.active{
+  background-color: white !important;
 }
 
-.frameTypeActive .content-title{
-  color:white;
+
+/* Mobile Map Properties */
+.mobile-map-properties .ui.attached.ui.tabular.menu {
+  background-color: #F7F7F7;
 }
+.mobile-map-properties a.item{
+
+  padding: 0.92em 1em !important;
+}
+
+
+.hanger-type-card i.icon{
+  transform: scale(0);
+  }
+  

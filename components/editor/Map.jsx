@@ -2,7 +2,7 @@ import React, { useEffect, useState, memo, useContext } from "react";
 import { MapContainer, TileLayer, useMap, useMapEvents, useMapEvent } from "react-leaflet";
 import styled from "styled-components";
 import "leaflet/dist/leaflet.css";
-import { mapDataContext } from "../hooks/useAuth";
+import { mapDataContext } from "../../hooks/useMapData";
 const styles = {
   modern: {
     url: "https://api.mapbox.com/styles/v1/ravirathore15/ckp8gw7yk052917pkug0835rd/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmF2aXJhdGhvcmUxNSIsImEiOiJja29wdGs0NDQwbW1wMm5zejI3bXR3Z2Y3In0.7KwUAoANdedvKM9WpldNTg",

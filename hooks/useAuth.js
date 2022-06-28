@@ -3,39 +3,7 @@ import { createContext, useState, useEffect } from "react";
 import { auth } from "../config/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 export const authContext = createContext();
-export const mapDataContext = createContext();
 
-export const MapDataContextProvider = (props) => {
-  const [title, setTitle] = useState("Mumbai");
-  const [divider, setDivider] = useState("INDIA");
-  const [tagline, setTagline] = useState("19.075°N / 72.877°E");
-  const [zoom, setZoom] = useState(11.5);
-  const [position, setPosition] = useState([18.95417755470588, 72.8551981450371]);
-  const [frameSize, setFrameSize] = useState("small");
-  const [frameType, setFrameType] = useState("hanger");
-  const [frameColor, setFrameColor] = useState("natural");
-  return (
-    <mapDataContext.Provider
-      value={{
-        title,
-        divider,
-        tagline,
-        zoom,
-        position,
-        frameSize,
-        setTitle,
-        setDivider,
-        setTagline,
-        setZoom,
-        setPosition,
-        setFrameSize,
-        setFrameType,
-        setFrameColor
-      }}>
-      {props.children}
-    </mapDataContext.Provider>
-  );
-};
 export const AuthContextProvider = (props) => {
   const [user, setUser] = useState(null);
   const [usr, loading, error] = useAuthState(auth);

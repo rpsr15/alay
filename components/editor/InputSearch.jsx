@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Accordion, Icon, Input, Button, Form, List } from "semantic-ui-react";
+import { Accordion, Icon, Input, List } from "semantic-ui-react";
 import styled, { css } from "styled-components";
 
 const StyledInput = styled(Input)`

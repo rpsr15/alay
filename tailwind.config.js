@@ -10,6 +10,9 @@ module.exports = {
     },
     extend: {
       colors: {
+        'oyster-bay': '#D5EAEC',
+        'oyster-bay-light': '#F1F8F9',
+        'oyster-bay-dark': '#AABBB',
         'secondary': '#CCEAEA',
         'secondary-dark':'#B7D2D2'
       },

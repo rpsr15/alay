@@ -2,7 +2,7 @@
 //import MapWrapper from "../components/MapWrapper";
 import { useState } from "react";
 import dynamic from "next/dynamic";
-const MapWithNoSSR = dynamic(() => import("../components/MapWrapper"), {
+const MapWithNoSSR = dynamic(() => import("../components/editor/MapWrapper"), {
   ssr: false
 });
 

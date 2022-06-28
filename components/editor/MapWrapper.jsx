@@ -1,14 +1,13 @@
-import { useContext } from "react";
+
 import MapProperties from "./MapProperties";
 import Map from "./Map";
 import Frame from "./Frame";
-import { mapDataContext } from "../hooks/useAuth";
 import { Button, Icon } from "semantic-ui-react";
 const MapWrapper = (props) => {
   const cartTotal = 2000;
   return (
     <section>
-      <div className='flex flex-col lg:flex-row'>
+      <div className='flex flex-col lg:flex-row bg-red'>
         <div
           id='frame-container'
           className='lg:w-7/12 py-14 flex items-center justify-center'
@@ -26,9 +25,10 @@ const MapWrapper = (props) => {
       </div>
       <div style={{  }} className='w-full px-10 py-5'>
         <Button
+        style={{ color: 'black',backgroundColor:"#F8AB8C"}}
           className='w-full'
           content={
-            <div className='flex justify-between'>
+            <div className='flex justify-between text-xl'>
               <div>
                 <Icon name='cart' />
                 
@@ -36,7 +36,7 @@ const MapWrapper = (props) => {
               </div>
 
               <div>
-              <label htmlFor=''>Add to cart &nbsp;</label>
+              <label>Add to cart &nbsp;</label>
               <Icon name="right arrow"/>
               </div>
             </div>

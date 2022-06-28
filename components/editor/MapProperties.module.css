@@ -1,0 +1,39 @@
+@keyframes animate-frame-selection {
+    100% {
+      filter: brightness(0.8);
+      -webkit-filter: brightness(0.8);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  .activeFrameColor {
+    animation-name: animate-frame-selection;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+  
+  .frameColorSelection {
+    position: absolute;
+    top: 25%;
+    left: 38%;
+    z-index: 2;
+  }
+  
+  .frameCheck {
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+  }
+  
+  .activeFrameCategory {
+    background-color: #AABBBD;
+    color: white !important;
+  }
+  

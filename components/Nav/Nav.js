@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { FaShoppingCart } from 'react-icons/fa';
+import { Icon } from 'semantic-ui-react';
 
 import styles from './Nav.module.css';
 
@@ -17,7 +17,7 @@ const Nav = () => {
       <p className={styles.navCart}>
         <Link href="/cart">
           <a>
-            <FaShoppingCart /> ${subtotal.toFixed(2)}
+            <Icon name='shopping cart' /> ${subtotal.toFixed(2)}
           </a>
         </Link>
       </p>
