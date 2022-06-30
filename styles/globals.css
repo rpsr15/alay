@@ -7,13 +7,27 @@
   --color-oyster-bay-light: #F1F8F95;
   --color-oyster-bay-dark: #AABBBD
 }
+main {
+  height: 100vh;
+}
 html,
 body {
+  height: 100%;
   padding: 0;
   margin: 0;
-  font-family: 'Playfair Display', serif;
+  font-family: 'Playfair Display', serif!important;
   font-weight: 400!important;
 
+}
+body{
+  min-height: 100%;
+}
+h1, h2, h3, h4, h5, p {
+  font-family: 'Playfair Display', serif!important;
+}
+
+button.ui.button{
+  background: inherit!important;
 }
 
 input {
@@ -57,12 +71,12 @@ input {
 }
 
 label {
-  font-family: 'Playfair Diplay',serif !important;
+  font-family: 'Playfair Display',serif !important;
 }
 
 .title, p, button {
  
-  font-family: 'Playfair Diplay',serif !important;
+  font-family: 'Playfair Display',serif !important;
 }
 
 
@@ -72,7 +86,7 @@ button.ui.button {
 }
 
 .ui .item {
-  font-family: 'Playfair Diplay',serif !important;
+  font-family: 'Playfair Display',serif !important;
 }
 
 .ui.tabular.menu {
@@ -84,8 +98,8 @@ button.ui.button {
 
 a{
   text-decoration: none!important;
+  color: black!important;
 }
-
 
 
 
@@ -111,3 +125,10 @@ a.item.active{
   transform: scale(0);
   }
   
+.contact-wrapper {
+  background-image: url('https://static.wixstatic.com/media/f61af8_e43a10081f754bd399d82f5c16b96f9b~mv2.png/v1/fill/w_297,h_800,al_c,q_85,enc_auto/f61af8_e43a10081f754bd399d82f5c16b96f9b~mv2.png');
+}
+
+p{
+  margin: 0!important;
+}
