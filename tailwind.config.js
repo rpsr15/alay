@@ -30,11 +30,13 @@ module.exports = {
         'oyster-bay-light': '#F1F8F9',
         'oyster-bay-dark': '#AABBB',
         'secondary': '#FCB08C',
-        'secondary-dark':'#FCB08C'
+        'secondary-dark':'#FCB08C',
+        'secondary-light': 'FCE0D4',
       },
       fontFamily: {
        montserrat: ['Montserrat', ...defaultTheme.fontFamily.sans],
-       playfair:['Playfair Display']
+       playfair:['Playfair Display'],
+       greatvibes:['Great Vibes']
         
       }
     },

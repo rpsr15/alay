@@ -21,11 +21,14 @@
     "react-hook-form": "^7.27.0",
     "react-leaflet": "^4.0.0",
     "react-redux": "^7.2.6",
+    "react-simple-image-slider": "^2.4.1",
     "recoil": "^0.6.1",
     "redux-thunk": "^2.4.1",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.1.2",
     "styled-components": "^5.3.5",
+    "use-breakpoint": "^3.0.3",
+    "use-resize-observer": "^9.0.2",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

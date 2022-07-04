@@ -1,8 +1,9 @@
 import React from "react";
 import { Form, Input, Icon } from "semantic-ui-react";
-import styled from "styled-components";
 import { useState } from "react";
 import { validateEmail } from "/lib/emailValidation.js";
+import Button from "./Button";
+
 const Footer = () => {
   const defaultError = {
     content: "Please enter a valid email address",
@@ -31,41 +32,46 @@ const Footer = () => {
     }
   };
   return (
-    <footer className='text-center px-10'>
-      <div className='mb-2'>
-        <p className='px-6'>
-          <span>Subscribe and stay on top of our latest news and promotions</span>
-        </p>
-      </div>
-      <Form className='footer-email-form mb-8' onSubmit={handleSubmit}>
-        <Form.Field
-          id='form-input-control-error-email'
-          control={Input}
-          placeholder='Enter your email address'
-          error={errorMessage}
-          onChange={onChange}
-        />
-        <div>
-          <Form.Button className='w-full bg-secondary' prim type='submit'>
-            Subscribe
-          </Form.Button>
+    <footer className='text-center'>
+      <div className='box md:py-[60px] w-full'>
+        <div className='wrapper max-w-[1150px] mx-auto'>
+          <div className='mb-2'>
+            <p className='px-6'>
+              <span>Subscribe and stay on top of our latest news and promotions</span>
+            </p>
+          </div>
+          <div className=' mx-auto max-w-[88%]'>
+            <Form className='footer-email-form  mb-8 md:flex md:justify-center' onSubmit={handleSubmit}>
+              <Form.Field
+                className='md:w-96 md:mr-4'
+                id='form-input-control-error-email'
+                control={Input}
+                placeholder='Enter your email address'
+                error={errorMessage}
+                onChange={onChange}
+              />
+              <div className='md:ml-2'></div>
+             
+              <Button label={'Subscribe'} bgColor="bg-secondary"/>
+            </Form>
+          </div>
+          <div className='mb-6'>
+            <a>
+              <Icon name='facebook f' size='large' />
+            </a>
+            <a>
+              <Icon name='instagram' size='large' />
+            </a>
+            <a>
+              <Icon name='pinterest p' size='large' />
+            </a>
+          </div>
+          <div className='mb-8'>
+            <p>
+              <span>© 2023 by Poster Gal. Proudly created in India with love</span>
+            </p>
+          </div>
         </div>
-      </Form>
-      <div className='mb-6'>
-        <a>
-          <Icon name='facebook f' size='large' />
-        </a>
-        <a>
-          <Icon name='instagram' size='large' />
-        </a>
-        <a>
-          <Icon name='pinterest p' size='large' />
-        </a>
-      </div>
-      <div className='mb-8'>
-        <p>
-          <span>© 2023 by Poster Gal. Proudly created in India with love</span>
-        </p>
       </div>
     </footer>
   );
