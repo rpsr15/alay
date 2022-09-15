@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Image, Icon } from "semantic-ui-react";
-import LazyImage from "../LazyImage";
 import styles from "./MapProperties.module.css";
 const HangerTypeCard = ({ label, imageSource, isSelected, onClick, value }) => {
   return (

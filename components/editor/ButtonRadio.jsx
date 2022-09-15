@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Button } from "semantic-ui-react";
 
 const ButtonCheckbox = ({ label, value, price, checked, onChange }) => {
   const handleRadioChange = () => {

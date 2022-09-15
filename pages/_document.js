@@ -1,20 +1,26 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
-
+import React from "react";
+import { CssBaseline } from "@nextui-org/react";
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
-    return { ...initialProps };
+    return {
+      ...initialProps,
+      styles: React.Children.toArray([initialProps.styles]),
+    };
   }
 
   render() {
     return (
       <Html style={{ fontSize: "16px" }}>
         <Head>
+          {CssBaseline.flush()}
           <link rel='preconnect' href='https://fonts.googleapis.com' />
           <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin='true' />
           <link href='https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap' rel='stylesheet' />
           <link href='https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap' rel='stylesheet' />
           <link href='https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap' rel='stylesheet'></link>
+          <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet"/>
           <link
             rel='stylesheet'
             href='https://unpkg.com/leaflet@1.7.1/dist/leaflet.css'

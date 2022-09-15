@@ -1,21 +1,21 @@
 import Head from "next/head";
 import SimpleImageSlider from "react-simple-image-slider";
 import styles from "../styles/Home.module.css";
-import { Button } from "semantic-ui-react";
+import { Image as NextImage } from "@nextui-org/react";
 import { useState, useContext } from "react";
 import Image from "next/image";
-import { Image as SemanticImage } from "semantic-ui-react";
 import heroImage from "/images/hero.webp";
 import heroMobileImage from "/images/hero_mobile.jpg";
 import borderBackground from "/images/mobile_border_background.webp";
 import mobileDemo2 from "/images/mobile_demo2.webp";
-import mobileDemo3 from "/images/mobile_demo3.webp";
 import mobileDemo4 from "/images/mobile_demo4.webp";
+import demo from "/images/demo1.webp";
 import useResizeObserver from "use-resize-observer";
-
-const SectionWrapper = ({ children }) => {
-  return <section>{children}</section>;
-};
+import ProductCard from "../components/ProductCard";
+import SectionWrapper from "../components/SectionWrapper";
+import { Text, Link } from "@nextui-org/react";
+import { FaMapMarked } from "react-icons/fa";
+import { GiWoodFrame, GiResize } from "react-icons/gi";
 export default function Home() {
   const { ref, width = 1, height = 1 } = useResizeObserver();
   const popularProducts = [
@@ -93,88 +93,145 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <section className='hero-section flex flex-col w-full md:relative'>
-          <div className='hero-image-wrapper'>
-            <Image layout='responsive' src={heroImage} />
+        <section className='hero-section flex flex-col w-full '>
+          <div className='hero-image-wrapper relative min-h-[260px] md:h-[75vh] lg:h-[80vh] '>
+            <Image layout='fill' objectFit='cover' src={heroImage} />
           </div>
-          <div className='hero-description text-center pt-8 px-5 md:absolute md:ml-12 md:top-2/4 md:-translate-y-2/4 md:max-w-[45%] md:text-left'>
-            <div className='hero-logo'>
-              <h1 className='font-semibold'>
-                Custom posters for
-                <br />
-                meaningful moments
-              </h1>
+          <div className='bg-oyster-bay hero-description text-center pt-8 px-12  md:absolute md:ml-12 md:top-2/4 md:-translate-y-2/4 md:max-w-[45%] md:text-left xl:ml-48 xl:pt-16 xl:px-24'>
+            <div className='hero-logo mb-8'>
+              <h1 className='text-3xl text-left font-allura'>New Collection</h1>
+              <div className='tracking-wide text-5xl uppercase text-left font-thin '>
+                style <br /> your <br /> walls
+              </div>
             </div>
-            <div className='hero-para mt-3 md:text-lg'>
-              Make your home more your with unique prints and products that truly express who you are . Great art tells
-              a story, and we're sure that you have some amazing stories to share with the world
-            </div>
-            <div className='design-button-wrapper mt-4 md:text-lg'>
-              <Button className='md:text-lg' style={{ backgroundColor: "#F8A888" }}>
+
+            <div className='design-button-wrapper bg-secondary mb-16 w-40 h-12 items-center md:w-48 md:text-lg text-center flex align-middle justify-center'>
+              <a href='#' className='md:text-lg '>
                 Design your own
-              </Button>
-            </div>
-          </div>
-        </section>
-        <section className='showcase text-center mt-8 px-5'>
-          <div className='grid sm:grid-cols-2 gap-4'>
-            <div className=''>
-              <div className='text-left'>
-                <div className=' text-3xl'>
-                  FRESH <br />
-                  POSTERS
-                </div>
-                <div className='text-2xl mt-1 font-greatvibes'>This Summer</div>
-                <div className='text-sm mt-2 '>
-                  I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click "Edit Text".
-                </div>
-              </div>
-            </div>
-            <div className='text-center relative mt-10 sm:row-span-2' style={{ backgroundColor: "#CCEAEA" }}>
-              <Image src={mobileDemo2} layout='intrinsic' />
-              <div className='absolute  left-14 bottom-8'>
-                <div>TROPICAL COLLECTION</div>
-                <a>Shop Now</a>
-              </div>
-            </div>
-            <div className=' sm:row-span-2'>
-              {" "}
-              <div className='relative mt-6 w-11/12' ref={ref}>
-                <div>
-                  <Image src={borderBackground} layout='intrinsic' />
-                </div>
-                <div className='absolute top-6 left-6'>
-                  <SimpleImageSlider width={width} height={height} images={slideImages} autoPlay={true} />
-                </div>
-              </div>
-            </div>
-            <div className='text-center relative mt-10 sm:row-span-2' style={{ backgroundColor: "#F5E5D6" }}>
-              <Image src={mobileDemo3} layout='intrinsic' />
-              <div className='absolute  left-14 bottom-8'>
-                <div>FREEDOM COLLECTION</div>
-                <a>Shop Now</a>
-              </div>
-            </div>
-            <div className='border-4 border-black text-center relative mt-10sm:row-span-2'>
-              <Image src={mobileDemo4} layout='intrinsic' />
-              <div className='absolute bottom-8 left-14'>
-                <div>TROPICAL COLLECTION</div>
-                <a>Shop Now</a>
-              </div>
+              </a>
             </div>
           </div>
         </section>
         <SectionWrapper>
-        <div className='popular text-center'>
-          <div>POPULAR POSTERS AND MAPS</div>
-          <div className='grid grid-cols-2 sm:grid-cols-4 lg:grid-flow-col lg:auto-cols-fr '>
-            {popularProducts.map((product) => (
-              <div>
-                <SemanticImage src={product.url} />
+          <div className='how-to-landing text-center md:mt-28 max-h-[600px]'>
+            <div className='flex flex-col md:flex-row md:gap-x-8'>
+              <div className='image-wrapper md:grow md:basis-0 relative h-[300px] md:h-[600px]'>
+                <Image src={demo} layout='fill' objectFit='cover' />
               </div>
-            ))}
+              <div className='p-7 text-left md:grow md:basis-0 m-auto'>
+                <div className=' '>
+                  <div className='mt-6 mb-8 md:mt-0'>
+                    <Text className='text-2xl capitalize'>Create a striking artwork in 3 steps</Text>
+                  </div>
+                  <div>
+                    <ul>
+                      <li className='mb-4'>
+                        <div className='grid grid-cols-12'>
+                          <div>
+                            <FaMapMarked className=' mt-2 text-secondary text-xl' />
+                          </div>
+                          <div className='col-span-11'>
+                            <div className='text-lg capitalize'>choose your city</div>
+                            <div className='mt-1'>
+                              we have all the cities in India, from teh smallest towns to the biggest cities
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                      <li className='mb-4'>
+                        <div className='grid grid-cols-12'>
+                          <div className=''>
+                            <GiResize className='mt-2 text-secondary text-xl' />
+                          </div>
+                          <div className='col-span-11'>
+                            <div className='text-lg capitalize'>customize your poster</div>
+                            <div className='mt-1'>
+                              Our custom editor comes with a choice of 15 beautiful styles.Zoom in and out to find your
+                              house on the map! Customize yhe text on your poster to make it extra special
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div className='grid grid-cols-12'>
+                          <div className=''>
+                            <GiWoodFrame className='mt-2 text-secondary text-xl' />
+                          </div>
+                          <div className='col-span-11'>
+                            <div className='text-lg capitalize'>choose your size</div>
+                            <div className='mt-1'>
+                              Our custom posters are available in 6 sizes, pick the ones that suits you best and enjoy!
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        </SectionWrapper>
+        <SectionWrapper>
+          <div className='how-to-landing text-center md:mt-16 max-h-[600px] mt-48'>
+            <div className='flex flex-col-reverse md:flex-row md:gap-x-8'>
+              <div className='p-7 text-left md:grow md:basis-0 m-auto'>
+                <div>
+                  <div className='mt-6 mb-8 md:mt-0'>
+                    <Text className='text-2xl capitalize'>Let the stars bring your special moments to life</Text>
+                  </div>
+                  <div>
+                    Each moment is unique. And the way the night sky looked is unique to that date and location. Create
+                    your own night sky poster with our Starmap editor!
+                  </div>
+                  <button>DESIGN YOUR POSTER</button>
+                </div>
+              </div>
+              <div className='image-wrapper md:grow md:basis-0 relative h-[300px] md:h-[600px]'>
+                <Image src={demo} layout='fill' objectFit='cover' />
+              </div>
+            </div>
+          </div>
+        </SectionWrapper>
+        <SectionWrapper>
+          <div className='how-to-landing text-center md:mt-16 max-h-[600px] '>
+            <div className='flex flex-col md:flex-row md:gap-x-8'>
+              <div className='image-wrapper md:grow md:basis-0 relative h-[300px] md:h-[600px]'>
+                <Image src={demo} layout='fill' objectFit='cover' />
+              </div>
+              <div className='p-7 text-left md:grow md:basis-0 m-auto'>
+                <div className=' '>
+                  <div className='mt-6 mb-8 md:mt-0'>
+                    <Text className='text-2xl capitalize'>Bespoke maps to tell your story, your way</Text>
+                  </div>
+                  <div>
+                    Have you always wanted to decorate your house with a map of the town you grew up in, the city where
+                    you met your loved one or the place you want to travel to? ...Only to discover that you couldn't
+                    find the town or city you wanted? That is why we have developed a super user friendly editor that
+                    lets you create a poster of any city or town, no matter how small or big, in minutes! Choose from 15
+                    beautiful styles and make it even more personal by customizing the text! Whether you are looking for
+                    a personal gift for your loved ones, or want to make your home feel unique, our bespoke posters are
+                    the perfect choice!
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </SectionWrapper>
+        <SectionWrapper>
+          <div className='flex justify-center wrapper  mx-auto text-center mt-48 md:mt-24'>
+            <div className='popular text-center'>
+              <Text className='mb-4 text-2xl'>POPULAR POSTERS AND MAPS</Text>
+              <div className='mt-8 justify-items-center  grid  gap-x-4 gap-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-flow-col 2xl:auto-cols-fr '>
+                {popularProducts.map((product) => (
+                  <div className='max-w-[250px]'>
+                    <ProductCard url={product.url} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </SectionWrapper>
         <section className='inspiration'></section>
       </main>

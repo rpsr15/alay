@@ -1,15 +1,16 @@
 import React from "react";
-import { Form, Input, Icon } from "semantic-ui-react";
 import { useState } from "react";
 import { validateEmail } from "/lib/emailValidation.js";
+import { Container, Input, Spacer, Text } from "@nextui-org/react";
 import Button from "./Button";
+import { FaFacebookF, FaInstagram, FaSnapchatGhost } from "react-icons/fa";
+import SectionWrapper from "./SectionWrapper";
 
 const Footer = () => {
   const defaultError = {
     content: "Please enter a valid email address",
     pointing: "above",
   };
-
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState(false);
@@ -24,7 +25,6 @@ const Footer = () => {
       setError(true);
     }
   };
-
   const handleSubmit = () => {
     console.log(email);
     if (email === "" || error) {
@@ -32,48 +32,59 @@ const Footer = () => {
     }
   };
   return (
-    <footer className='text-center'>
-      <div className='box md:py-[60px] w-full'>
-        <div className='wrapper max-w-[1150px] mx-auto'>
-          <div className='mb-2'>
-            <p className='px-6'>
-              <span>Subscribe and stay on top of our latest news and promotions</span>
-            </p>
-          </div>
-          <div className=' mx-auto max-w-[88%]'>
-            <Form className='footer-email-form  mb-8 md:flex md:justify-center' onSubmit={handleSubmit}>
-              <Form.Field
-                className='md:w-96 md:mr-4'
-                id='form-input-control-error-email'
-                control={Input}
-                placeholder='Enter your email address'
-                error={errorMessage}
-                onChange={onChange}
-              />
-              <div className='md:ml-2'></div>
-             
-              <Button label={'Subscribe'} bgColor="bg-secondary"/>
-            </Form>
-          </div>
-          <div className='mb-6'>
-            <a>
-              <Icon name='facebook f' size='large' />
-            </a>
-            <a>
-              <Icon name='instagram' size='large' />
-            </a>
-            <a>
-              <Icon name='pinterest p' size='large' />
-            </a>
-          </div>
-          <div className='mb-8'>
-            <p>
-              <span>© 2023 by Poster Gal. Proudly created in India with love</span>
-            </p>
+    <SectionWrapper>
+      <footer className="pt-32 mx-8">
+        <div className='box md:py-[60px] w-full'>
+          <div className='wrapper   mx-auto text-center'>
+            <div className='text-center text-6xl'>
+              <Text size={"1rem"}>Subscribe and stay on top of our latest news and promotions</Text>
+            </div>
+            <Spacer y={1} />
+            <div className=' mx-auto md:max-w-[88%]'>
+              <form className='footer-email-form  mb-8 sm:flex sm:justify-center' onSubmit={handleSubmit}>
+                <div className='w-full md:w-[400px]'>
+                  <Input
+                    className='nextinput'
+                    size='lg'
+                    width='100%'
+                    labelPlaceholder='Enter your email address'
+                    id='form-input-control-error-email'
+                    // control={Input}
+                    placeholder='Enter your email address'
+                    error={errorMessage}
+                    onChange={onChange}
+                  />
+                </div>
+
+                <div className='mt-4 sm:mt-0 sm:ml-4'>
+                  <Button color='text-black' bgColor='bg-secondary' type='submit' size={"lg"}>
+                    Subscribe
+                  </Button>
+                </div>
+              </form>
+            </div>
+            <div className=' mb-6 text-xl flex flex-row justify-center'>
+              <a>
+                <FaFacebookF />
+              </a>
+              <Spacer x={1} />
+              <a>
+                <FaInstagram />
+              </a>
+              <Spacer x={1} />
+              <a>
+                <FaSnapchatGhost />
+              </a>
+            </div>
+            <div className='mb-8'>
+              <p>
+                <span>© 2023 by Poster Gal. Proudly created in India with love</span>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </footer>
+      </footer>
+    </SectionWrapper>
   );
 };
 

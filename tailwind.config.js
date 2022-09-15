@@ -1,45 +1,45 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
+const defaultTheme = require("tailwindcss/defaultTheme");
 module.exports = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     screens: {
-      'sm': '640px',
-      // => @media (min-width: 640px) { ... }
-
-      'md': '768px',
-      // => @media (min-width: 768px) { ... }
-
-      'lg': '1024px',
+      xs: "375px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
       // => @media (min-width: 1024px) { ... }
 
-      'xl': '1280px',
+      xl: "1280px",
       // => @media (min-width: 1280px) { ... }
 
-      '2xl': '1536px',
+      "2xl": "1536px",
       // => @media (min-width: 1536px) { ... }
     },
     letterSpacing: {
-      widest: '0.5em'
+      widest: "0.5em",
     },
     extend: {
       colors: {
-        'oyster-bay': '#D5EAEC',
-        'oyster-bay-light': '#F1F8F9',
-        'oyster-bay-dark': '#AABBB',
-        'secondary': '#FCB08C',
-        'secondary-dark':'#FCB08C',
-        'secondary-light': 'FCE0D4',
+        "oyster-bay": "#d5eaec",
+        "oyster-bay-light": "#F1F8F9",
+        "oyster-bay-dark": "#AABBB",
+        "secondary": "#F8A888",
+        "secondary-dark": "#C6866D",
+        "secondary-light": "#FCE0D4",
+        "background-gray": "#eaeeef",
+        "tint-dark-gray":'#7a8c8c',
+        'tint-black': '#2f2e2e',
       },
       fontFamily: {
-       montserrat: ['Montserrat', ...defaultTheme.fontFamily.sans],
-       playfair:['Playfair Display'],
-       greatvibes:['Great Vibes']
-        
-      }
+        montserrat: ["Montserrat", ...defaultTheme.fontFamily.sans],
+        playfair: ["Playfair Display"],
+        greatvibes: ["Great Vibes"],
+        allura:["Allura"],
+      },
+      aspectRatio:{
+        'product-image-ratio': '402 / 495'
+      },
     },
   },
   plugins: [],
-}
+};

@@ -9,6 +9,8 @@
   --color-secondary: #fcb08c;
   --color-secondary-dark: #fcb08c;
   --color-secondary-light: #fce0d4;
+  --color-background-gray: #eaeeef;
+  --color-tink-dark-gray: #7a8c8c;
 }
 
 html,
@@ -17,24 +19,25 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Playfair Display", serif !important;
-  font-weight: 400 !important;
-  color: black !important;
+  color: black;
+  letter-spacing: 0.02rem!important;
 }
 body {
   min-height: 100%;
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-p {
-  font-family: "Playfair Display", serif !important;
+
+.noscroll {
+  overflow: hidden;
 }
 
-button.ui.button {
-  background: inherit;
-  color: black;
+
+
+.nextinput div {
+  border-radius: 0px !important;
+}
+
+.ant-breadcrumb li {
+  display: inline;
 }
 
 @media only screen and (min-width: 768px) {
@@ -50,13 +53,11 @@ input:focus {
   border-width: 2px !important;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 * {
   box-sizing: border-box !important;
+}
+.pac-container {
+  z-index: 4000!important;
 }
 
 .pac-container:after {
@@ -70,9 +71,9 @@ a {
   display: none !important;
 }
 
-input {
+/* input {
   border-radius: 0 !important;
-}
+} */
 
 .content {
   padding: 20px !important;
@@ -84,28 +85,10 @@ label {
 }
 
 .title,
-p,
-button {
+p {
   font-family: "Playfair Display", serif !important;
 }
 
-button.ui.button {
-  border-radius: 0;
-  font-weight: 400;
-  line-height: 1.1em !important;
-  background-color: inherit;
-}
-button.ui.button:hover {
-  background-color: inherit;
-  background-image:linear-gradient(hsla(255,100%,100%,.2) 100%,transparent 100%)
-}
-button:ui.button:active{
-  background-color: inherit!important;
-}
-
-.ui.button:active{
-  background-color: inherit!important;
-}
 .ui .item {
   font-family: "Playfair Display", serif !important;
 }
@@ -146,4 +129,15 @@ a.item.active {
 
 p {
   margin: 0 !important;
+}
+
+
+
+/* Product.js */
+.product-image-wrapper{
+
+    height: clamp(378px, 65vw, 600px);
+    position: relative;
+    overflow: hidden;
+    display: flex;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, memo, useContext } from "react";
+ import React, { useEffect, useState, memo, useContext } from "react";
 import { MapContainer, TileLayer, useMap, useMapEvents, useMapEvent } from "react-leaflet";
 import styled from "styled-components";
 import "leaflet/dist/leaflet.css";
@@ -9,11 +9,11 @@ const styles = {
   },
 };
 const StyledMapContainer = styled(MapContainer)`
-  width: 110vw;
+ 
   height: calc(1.4 * 110vw);
 
   @media (min-width: 500px) {
-    width: 65vw;
+   
     height: calc(1.4 * 65vw);
   }
 `;

@@ -1,4 +1,4 @@
-import { Tab, Image } from "semantic-ui-react";
+
 import { useState, memo } from "react";
 import ButtonRadio from "./ButtonRadio";
 import InputSearch from "./InputSearch";
@@ -151,7 +151,7 @@ const MobilePane = ({
     {
       menuItem: "Location",
       render: () => (
-        <Tab.Pane>
+        <div>
           <div>
             <InputSearch
               onPlaceSelect={onPlaceSelect}
@@ -164,15 +164,15 @@ const MobilePane = ({
               type='text'
             />
           </div>
-        </Tab.Pane>
+        </div>
       ),
     },
-    { menuItem: "Style", render: () => <Tab.Pane>Tab 2 Content</Tab.Pane> },
+    { menuItem: "Style", render: () => <div>Tab 2 Content</div> },
     {
       menuItem: "Text",
       render: () => (
         <div>
-          <Tab.Pane>
+          <div>
             {" "}
             <div className='flex justify-between pb-2.5'>
               <InputLabel>Title</InputLabel>
@@ -186,14 +186,14 @@ const MobilePane = ({
               <InputLabel>Tagline</InputLabel>
               <Input type='text' value={tagline} onChange={handleTagLineChange} />
             </div>
-          </Tab.Pane>
+          </div>
         </div>
       ),
     },
     {
       menuItem: "Size",
       render: () => (
-        <Tab.Pane>
+        <div>
           <div>
             <ButtonRadio
               value={"small"}
@@ -217,13 +217,13 @@ const MobilePane = ({
               onChange={handleFrameSizeCheckboxChange}
             />
           </div>
-        </Tab.Pane>
+        </div>
       ),
     },
     {
       menuItem: "Frame",
       render: () => (
-        <Tab.Pane>
+        <div>
           <div>
             <div className='w-full'>
               <div className='border border-slate-300'>
@@ -237,7 +237,7 @@ const MobilePane = ({
               </div>
             </div>
           </div>
-        </Tab.Pane>
+        </div>
       ),
     },
   ];
@@ -250,7 +250,8 @@ const MobilePane = ({
     // scroll into view is working on 2nd click not on first click
   };
 
-  return <Tab className='mobile-map-properties' activeIndex={activeIndex} panes={panes} onTabChange={onClick} />;
+  // return <div className='mobile-map-properties' activeIndex={activeIndex} panes={panes} onTabChange={onClick} />;
+  return <div>mobiel pane</div>
 };
 
 export default memo(MobilePane);
