@@ -36,6 +36,40 @@ const frameTypes = [
     value: "frame",
   },
 ];
+const hangerColors = [
+  {
+    title: "Natural",
+    value: "natural",
+    url: "https://mldtl9cr1v1x.i.optimole.com/UtPelFM-94jl2uNv/w:100/h:100/q:mauto/rt:fill/g:ce/f:avif/https://www.mapiful.com/content/uploads/2019/10/Wooden-poster-hanger.jpg",
+  },
+  {
+    title: "Black",
+    value: "black",
+    url: "https://mldtl9cr1v1x.i.optimole.com/UtPelFM-225EaN1V/w:100/h:100/q:mauto/rt:fill/g:ce/f:avif/https://www.mapiful.com/content/uploads/2019/10/Black-Poster-Hanger.jpg",
+  },
+  {
+    title: "White",
+    value: "white",
+    url: "https://mldtl9cr1v1x.i.optimole.com/UtPelFM-h5L2U0Gt/w:100/h:100/q:mauto/rt:fill/g:ce/f:avif/https://www.mapiful.com/content/uploads/2019/10/White-Poster-Hanger.jpg",
+  },
+];
+const fullFrameColors = [
+  {
+    title: "Natural",
+    value: "natural",
+    url: "https://mldtl9cr1v1x.i.optimole.com/UtPelFM-KAsPd5nZ/w:100/h:100/q:mauto/rt:fill/g:ce/f:avif/https://www.mapiful.com/content/uploads/2019/10/Natural-Wood-Frame-Front-view-in-size-24x36-inches.jpg",
+  },
+  {
+    title: "Black",
+    value: "black",
+    url: "https://mldtl9cr1v1x.i.optimole.com/UtPelFM-C_-cHLaM/w:100/h:100/q:mauto/rt:fill/g:ce/f:avif/https://www.mapiful.com/content/uploads/2019/10/Black-Wood-Frame-Front-view-in-size-24x36-inches.jpg",
+  },
+  {
+    title: "White",
+    value: "white",
+    url: "https://mldtl9cr1v1x.i.optimole.com/UtPelFM-ajINUZYo/w:100/h:100/q:mauto/rt:fill/g:ce/f:avif/https://www.mapiful.com/content/uploads/2021/12/White-Wood-Frame-Front-view-in-size-18x24-inches.jpg",
+  },
+];
 const frameColors = [
   {
     title: "Natural",
@@ -181,7 +215,7 @@ const MapProperties = () => {
                 <Text>Select frame color</Text>
                 <div className='w-full'>
                   <GroupSelection
-                    options={frameColors}
+                    options={mapData.frameType === 'hanger' ? hangerColors : fullFrameColors}
                     direction='row'
                     value={mapData.frameColor}
                     onSelect={handleFrameColorChange}
