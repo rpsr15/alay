@@ -1,6 +1,5 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Form, Icon, Button } from "semantic-ui-react";
 import Image from "next/image";
 //import backgoundImage from '/public/images/contact_background.webp'
 // import {writeContactUsMessage} from "../firebase";
@@ -24,30 +23,30 @@ const ContactFormWrapper = styled.div`
     width: 288px;
   }
 `;
-const StyledForm = styled(Form)`
-  & input {
-    background: transparent !important;
-  }
+// const StyledForm = styled(Form)`
+//   & input {
+//     background: transparent !important;
+//   }
 
-  margin-top: 2rem;
-  @media (min-width: 1024px) {
-    margin-top: 0;
-  }
+//   margin-top: 2rem;
+//   @media (min-width: 1024px) {
+//     margin-top: 0;
+//   }
 
-  & textarea {
-    border-radius: 0 !important;
-    border-color: black !important;
-    background: transparent !important;
-  }
+//   & textarea {
+//     border-radius: 0 !important;
+//     border-color: black !important;
+//     background: transparent !important;
+//   }
 
-  & .ui.button {
-    background-color: transparent !important;
-    font-family: "Playfair Display", serif;
-    float: right;
-    font-size: 1.15rem;
-    font-weight: normal;
-  }
-`;
+//   & .ui.button {
+//     background-color: transparent !important;
+//     font-family: "Playfair Display", serif;
+//     float: right;
+//     font-size: 1.15rem;
+//     font-weight: normal;
+//   }
+// `;
 
 const PartitionLine = () => {
   return <div style={{ borderTop: "2px solid black", width: "29px", height: "5px" }}></div>;
@@ -98,15 +97,13 @@ const contact = (props) => {
             <p>remail: info@mysite.com</p>
           </div>
           <div className="mt-4 mb-4">
-            <Icon size={"large"} name={"instagram"} />
-            <Icon size={"large"} name={"facebook f"} />
-            <Icon size={"large"} name={"pinterest p"} />
+           icons
           </div>
         </AddressDetails>
         <ContactFormWrapper>
-          <StyledForm onSubmit={handleSumbit}>
-            <Form.Input required={true} value={name} name={"name"} onChange={handleChange} placeholder={"Name"} />
-            <Form.Input
+          <form onSubmit={handleSumbit}>
+            <input required={true} value={name} name={"name"} onChange={handleChange} placeholder={"Name"} />
+            <input
               required={true}
               type={"remail"}
               onChange={handleChange}
@@ -114,7 +111,7 @@ const contact = (props) => {
               value={remail}
               placeholder={"remail"}
             />
-            <Form.Input
+            <input
               required={true}
               type={"tel"}
               onChange={handleChange}
@@ -123,7 +120,7 @@ const contact = (props) => {
               pattern='[0-9]{10}'
               placeholder={"Phone"}
             />
-            <Form.TextArea
+            <input
               required={true}
               name={"message"}
               value={message}
@@ -131,7 +128,7 @@ const contact = (props) => {
               placeholder={"Type your message here..."}
             />
             <button type={"submit"} className="bg-tranparent">Submit</button>
-          </StyledForm>
+          </form>
         </ContactFormWrapper>
       </AddressDetailsWrapper>
     </div>

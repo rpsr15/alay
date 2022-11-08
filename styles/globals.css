@@ -20,17 +20,48 @@ body {
   margin: 0;
   font-family: "Playfair Display", serif !important;
   color: black;
-  letter-spacing: 0.02rem!important;
+  letter-spacing: 0.02rem !important;
 }
 body {
   min-height: 100%;
+  overflow: scroll;
 }
-
 .noscroll {
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
-
+.frame-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.map-container {
+  zoom: 0.3;
+}
+@media only screen and (min-width: 375px) {
+  .map-container {
+    zoom: 0.35;
+  }
+}
+@media only screen and (min-width: 425px) {
+  .map-container {
+    zoom: 0.42;
+  }
+}
+@media only screen and (min-width: 520px) {
+  .map-container {
+    zoom: 0.5;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .map-container {
+    zoom: 0.6;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .map-container {
+    zoom: 0.5;
+  }
+}
 
 .nextinput div {
   border-radius: 0px !important;
@@ -57,7 +88,7 @@ input:focus {
   box-sizing: border-box !important;
 }
 .pac-container {
-  z-index: 4000!important;
+  z-index: 4000 !important;
 }
 
 .pac-container:after {
@@ -131,13 +162,9 @@ p {
   margin: 0 !important;
 }
 
-
-
 /* Product.js */
-.product-image-wrapper{
-
-    height: clamp(378px, 65vw, 600px);
-    position: relative;
-    overflow: hidden;
-    display: flex;
+.product-image-wrapper {
+  height: clamp(378px, 65vw, 600px);
+  position: relative;
+  display: flex;
 }
