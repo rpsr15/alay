@@ -6,7 +6,8 @@ import useCartContext from "../hooks/use-cart-context";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import { createTheme, Text, NextUIProvider } from "@nextui-org/react";
-
+import { Provider } from "react-redux";
+import store from "../redux/store";
 const theme = createTheme({
   type: "light",
   theme: {
@@ -27,9 +28,9 @@ function MyApp({ Component, pageProps }) {
   const cart = useCartContext();
 
   return (
-    <AuthContextProvider>
-      <MapDataContextProvider>
-        <CartContext.Provider value={cart}>
+    <Provider store={store}>
+      <AuthContextProvider>
+        <MapDataContextProvider>
           <NextUIProvider theme={theme}>
             <div className='announcement-container bg-red-500'></div>
             <Nav />
@@ -38,9 +39,9 @@ function MyApp({ Component, pageProps }) {
             </main>
             <Footer />
           </NextUIProvider>
-        </CartContext.Provider>
-      </MapDataContextProvider>
-    </AuthContextProvider>
+        </MapDataContextProvider>
+      </AuthContextProvider>
+    </Provider>
   );
 }
 

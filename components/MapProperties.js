@@ -7,7 +7,6 @@ import { useContext } from "react";
 import { mapDataContext } from "../hooks/useMapData";
 import GroupSelection from "./GroupSelection";
 const getTagline = (lat, lng) => {
-  console.log("gettagline", lat, lng);
   const newTagLine = lat.substr(0, 6) + "°N / " + lng.substr(0, 6) + "°E";
   return newTagLine;
 };
@@ -90,7 +89,7 @@ const MapProperties = () => {
   const onPlaceSelect = (place) => {
     const fullName = place.formatted_address;
     const cityName = fullName.substr(0, fullName.indexOf(","));
-    console.log(cityName);
+
     const lat = place.geometry.location.lat();
     const lng = place.geometry.location.lng();
     const newTagline = getTagline(lat + "", lng + "");
@@ -120,6 +119,21 @@ const MapProperties = () => {
   const handleFrameColorChange = (newColor) => {
     mapData.setFrameColor(newColor);
   };
+  const handleAddtoCart = () => {
+    console.log("handle it");
+
+    const mapDetails = (({ title, divider, tagline, zoom, position, frameColor, frameSize, frameType }) => ({
+      title,
+      divider,
+      tagline,
+      zoom,
+      position,
+      frameColor,
+      frameSize,
+      frameType,
+    }))(mapData);
+    mapData.setShouldTakeSnapshot(true);
+  };
   const PropertyEditor = () => {
     switch (selectedTab) {
       case 1:
@@ -130,8 +144,6 @@ const MapProperties = () => {
               <Autocomplete
                 className='h-10 rounded-xl pl-2 placeholder-black'
                 onPlaceSelected={(place) => {
-                  console.log(place.formatted_address);
-                  console.log(place.geometry.location.lat());
                   onPlaceSelect(place);
                 }}
                 options={{
@@ -215,7 +227,7 @@ const MapProperties = () => {
                 <Text>Select frame color</Text>
                 <div className='w-full'>
                   <GroupSelection
-                    options={mapData.frameType === 'hanger' ? hangerColors : fullFrameColors}
+                    options={mapData.frameType === "hanger" ? hangerColors : fullFrameColors}
                     direction='row'
                     value={mapData.frameColor}
                     onSelect={handleFrameColorChange}
@@ -224,7 +236,9 @@ const MapProperties = () => {
               </div>
             </div>
             <div className='flex justify-center'>
-              <Button className='bg-oyster-bay text-black'>Add to cart</Button>
+              <Button className='bg-oyster-bay text-black' onPress={handleAddtoCart}>
+                Add to cart
+              </Button>
             </div>
           </div>
         );

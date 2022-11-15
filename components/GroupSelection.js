@@ -1,11 +1,11 @@
 import { Image } from "@nextui-org/react";
 const GroupSelection = ({ options, onSelect, direction, value }) => {
     const spaceValue = direction === "row" ? "space-x-1" : "space-y-1";
-    console.log("test", value);
+
     return (
       <div className={`flex flex-${direction} w-full  ${spaceValue}`}>
         {options.map((item) => {
-          console.log("selected current", value);
+        
           const selectedClass = "bg-secondary-dark text-white underline";
           return (
             <div

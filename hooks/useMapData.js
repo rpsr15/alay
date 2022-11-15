@@ -12,6 +12,7 @@ export const MapDataContextProvider = (props) => {
   const [frameType, setFrameType] = useState("hanger");
   // white, black and natural
   const [frameColor, setFrameColor] = useState("natural");
+  const [shouldTakeSnapshot, setShouldTakeSnapshot] = useState(false)
   return (
     <mapDataContext.Provider
       value={{
@@ -23,6 +24,7 @@ export const MapDataContextProvider = (props) => {
         frameSize,
         frameType,
         frameColor,
+        shouldTakeSnapshot,
         setTitle,
         setDivider,
         setTagline,
@@ -31,6 +33,7 @@ export const MapDataContextProvider = (props) => {
         setFrameSize,
         setFrameType,
         setFrameColor,
+        setShouldTakeSnapshot
       }}>
       {props.children}
     </mapDataContext.Provider>

@@ -9,6 +9,6 @@ export default function useCart() {
   console.log("use-cart",cart)
   return {
     ...cart,
-    subtotal: formatCurrency(cart.subtotal )
+    subtotal: formatCurrency(0 )
   };
 }
