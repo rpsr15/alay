@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import { Button, Text, Input, Spacer } from "@nextui-org/react";
+import { Button, Text, Input } from "@nextui-org/react";
 import { IoTextOutline, IoCartOutline, IoImageOutline, IoLocationOutline, IoCloseOutline } from "react-icons/io5";
 import Autocomplete from "react-google-autocomplete";
-import { usePlacesWidget } from "react-google-autocomplete";
 import { useContext } from "react";
 import { mapDataContext } from "../hooks/useMapData";
 import GroupSelection from "./GroupSelection";
+
+//  TOOD: Move to utils
 const getTagline = (lat, lng) => {
   const newTagLine = lat.substr(0, 6) + "°N / " + lng.substr(0, 6) + "°E";
   return newTagLine;
 };
 
+//  TODO: Move Constants to separate file
 const frameSizes = [
   {
     title: "Small 30x40cm",
@@ -143,7 +145,9 @@ const MapProperties = () => {
               <Text className='text-white text-center text-lg'>Find your favorite place</Text>
               <Autocomplete
                 className='h-10 rounded-xl pl-2 placeholder-black'
+                apiKey={process.env.NEXT_PUBLIC_PLACESAPIKEY}
                 onPlaceSelected={(place) => {
+                  console.log("Place selected", place)
                   onPlaceSelect(place);
                 }}
                 options={{

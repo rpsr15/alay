@@ -9,7 +9,7 @@ const Frame = (props) => {
     const div = document.getElementById("map_canvas");
     takeSnapshot(div);
     mapData.setShouldTakeSnapshot(false);
-  }, [mapData.shouldTakeSnapshot]);
+  }, [mapData]);
   const takeSnapshot = async (element) => {
     const canvas = await html2canvas(element);
     canvas.toBlob((blob) => {

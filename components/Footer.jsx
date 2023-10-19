@@ -76,11 +76,7 @@ const Footer = () => {
                 <FaSnapchatGhost />
               </a>
             </div>
-            <div className='mb-8'>
-              <p>
-                <span>© 2023 by Poster Gal. Proudly created in India with love</span>
-              </p>
-            </div>
+            
           </div>
         </div>
       </footer>

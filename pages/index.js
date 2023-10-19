@@ -9,7 +9,7 @@ import SectionWrapper from "../components/SectionWrapper";
 import { Text, Link } from "@nextui-org/react";
 import { FaMapMarked } from "react-icons/fa";
 import { GiWoodFrame, GiResize } from "react-icons/gi";
-import popularProducts from '../data/products.json'
+import popularProducts from "../data/products.json";
 export default function Home() {
   // const popularProducts = [
   //   {
@@ -91,9 +91,7 @@ export default function Home() {
             </div>
 
             <div className="design-button-wrapper bg-secondary mb-16 w-40 h-12 items-center md:w-48 md:text-lg text-center flex align-middle justify-center">
-              <a href="#" className="md:text-lg ">
-                Design your own
-              </a>
+              <Link href="/editor" className="md:text-lg">Design your own</Link>
             </div>
           </div>
         </section>
