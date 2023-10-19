@@ -1,11 +1,18 @@
 import React, { useEffect, useState, memo, useContext } from "react";
-import { MapContainer, TileLayer, useMap, useMapEvents, useMapEvent } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  useMap,
+  useMapEvents,
+  useMapEvent,
+} from "react-leaflet";
 import styled from "styled-components";
 import "leaflet/dist/leaflet.css";
 import { mapDataContext } from "../../hooks/useMapData";
+const token = process.env.NEXT_PUBLIC_MAPBOXAPIKEY;
 const styles = {
   modern: {
-    url: "https://api.mapbox.com/styles/v1/ravirathore15/ckp8gw7yk052917pkug0835rd/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicmF2aXJhdGhvcmUxNSIsImEiOiJja29wdGs0NDQwbW1wMm5zejI3bXR3Z2Y3In0.7KwUAoANdedvKM9WpldNTg",
+    url: `https://api.mapbox.com/styles/v1/ravirathore15/ckp8gw7yk052917pkug0835rd/tiles/256/{z}/{x}/{y}@2x?access_token=${token}`,
   },
 };
 const StyledMapContainer = styled(MapContainer)`
@@ -13,7 +20,7 @@ const StyledMapContainer = styled(MapContainer)`
   width: 857px;
 `;
 
-// Todo move style urls to .env file
+// Todo move style urls to separate file
 const Map = ({ style, setMapRef }) => {
   const mapData = useContext(mapDataContext);
   const [map, setMap] = useState(null);
@@ -46,7 +53,8 @@ const Map = ({ style, setMapRef }) => {
         zoomDelta={0.25}
         center={mapData.position}
         zoom={mapData.zoom}
-        scrollWheelZoom={false}>
+        scrollWheelZoom={false}
+      >
         <TileLayer detectRetina={true} url={styles[style].url} />
         <MapEvents />
       </StyledMapContainer>
