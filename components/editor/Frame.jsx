@@ -13,7 +13,7 @@ const Frame = (props) => {
   const takeSnapshot = async (element) => {
     const canvas = await html2canvas(element);
     canvas.toBlob((blob) => {
-      window.saveAs(blob, 'my_image.jpg')
+     // window.saveAs(blob, 'my_image.jpg')
     })
   };
   return (

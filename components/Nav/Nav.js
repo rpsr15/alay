@@ -60,7 +60,7 @@ const Nav = () => {
           <IoLogoDesignernews className='w-14 h-14 lg:hidden' />
           <IoLogoDesignernews className='hidden max-h-16 h-16 lg:block lg:w-full'></IoLogoDesignernews>
         </a>
-        <div>MAPNY</div>
+        <div>Alay</div>
       </Navbar.Brand>
 
       <Navbar.Content hideIn='xs' className='grow-0 basis-auto'>

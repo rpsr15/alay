@@ -1,23 +1,15 @@
 import Head from "next/head";
-import SimpleImageSlider from "react-simple-image-slider";
 import styles from "../styles/Home.module.css";
-import { Image as NextImage } from "@nextui-org/react";
-import { useState, useContext } from "react";
 import Image from "next/image";
-import heroImage from "/images/hero.webp";
-import heroMobileImage from "/images/hero_mobile.jpg";
-import borderBackground from "/images/mobile_border_background.webp";
-import mobileDemo2 from "/images/mobile_demo2.webp";
-import mobileDemo4 from "/images/mobile_demo4.webp";
-import demo from "/images/demo1.webp";
-import useResizeObserver from "use-resize-observer";
+import heroImage from "/images/hero-banner.jpg";
+import demo from "/images/demo_1.jpg";
+import demo2 from "/images/demo_2.jpg"
 import ProductCard from "../components/ProductCard";
 import SectionWrapper from "../components/SectionWrapper";
 import { Text, Link } from "@nextui-org/react";
 import { FaMapMarked } from "react-icons/fa";
 import { GiWoodFrame, GiResize } from "react-icons/gi";
 export default function Home() {
-  const { ref, width = 1, height = 1 } = useResizeObserver();
   const popularProducts = [
     {
       productId: 1,
@@ -76,14 +68,7 @@ export default function Home() {
       price: 1300,
     },
   ];
-  const slideImages = [
-    {
-      url: "https://static.wixstatic.com/media/84770f_bde889cbaedd4544be894767f6edda3f~mv2_d_1470_1560_s_2.png/v1/fill/w_572,h_690,q_90/84770f_bde889cbaedd4544be894767f6edda3f~mv2_d_1470_1560_s_2.webp",
-    },
-    {
-      url: "https://static.wixstatic.com/media/84770f_736da3e2a21f4a36969a4ce08a4f6166~mv2.jpg/v1/fill/w_572,h_690,q_90/84770f_736da3e2a21f4a36969a4ce08a4f6166~mv2.webp",
-    },
-  ];
+  
 
   return (
     <div className={styles.container}>
@@ -117,6 +102,7 @@ export default function Home() {
             <div className='flex flex-col md:flex-row md:gap-x-8'>
               <div className='image-wrapper md:grow md:basis-0 relative h-[300px] md:h-[600px]'>
                 <Image src={demo} layout='fill' objectFit='cover' />
+
               </div>
               <div className='p-7 text-left md:grow md:basis-0 m-auto'>
                 <div className=' '>
@@ -189,7 +175,7 @@ export default function Home() {
                 </div>
               </div>
               <div className='image-wrapper md:grow md:basis-0 relative h-[300px] md:h-[600px]'>
-                <Image src={demo} layout='fill' objectFit='cover' />
+                <Image src={demo2} layout='fill' objectFit='cover' />
               </div>
             </div>
           </div>
