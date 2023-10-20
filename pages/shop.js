@@ -3,7 +3,7 @@ import { Container } from "@nextui-org/react";
 import SortDropdown from "../components/SortDropdown";
 import FilterSection from "../components/FilterSection";
 
-const shop = () => {
+const Shop = () => {
   const productSortValues = [
     {
       text: "Price (low to high)",
@@ -54,4 +54,4 @@ const shop = () => {
   );
 };
 
-export default shop;
+export default Shop;

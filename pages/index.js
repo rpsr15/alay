@@ -10,66 +10,9 @@ import { Text, Link } from "@nextui-org/react";
 import { FaMapMarked } from "react-icons/fa";
 import { GiWoodFrame, GiResize } from "react-icons/gi";
 import popularProducts from "../data/products.json";
-export default function Home() {
-  // const popularProducts = [
-  //   {
-  //     productId: 1,
-  //     name: "Old world map in Mercator Projection",
-  //     description: "",
-  //     url: "https://mapny.store/assets/cache_image/img/catalog/mercator-map-of-the-world-ernest-dudley-chase-interior_285x399_82d.webp",
-  //     price: 1,
-  //   },
-  //   {
-  //     productId: 2,
-  //     name: "Textile",
-  //     description: "",
-  //     url: "https://mapny.store/assets/cache_image/img/catalog/textile-print_285x399_82d.webp",
-  //     price: 1300,
-  //   },
-  //   {
-  //     productId: 3,
-  //     name: "Textile",
-  //     description: "",
-  //     url: "https://mapny.store/assets/cache_image/img/catalog/faces-candles-eyes1_285x399_82d.webp",
-  //     price: 1300,
-  //   },
-  //   {
-  //     productId: 4,
-  //     name: "Textile",
-  //     url: "https://mapny.store/assets/cache_image/img/catalog/new-york-print4_285x399_82d.webp",
-  //     description: "",
-  //     price: 1300,
-  //   },
-  //   {
-  //     productId: 5,
-  //     name: "Textile",
-  //     url: "https://mapny.store/assets/cache_image/img/catalog/eye-wall_285x399_82d.webp",
-  //     description: "",
-  //     price: 1300,
-  //   },
-  //   {
-  //     productId: 6,
-  //     name: "Textile",
-  //     url: "https://mapny.store/assets/cache_image/img/catalog/two-faces-one-line_285x399_82d.webp",
-  //     description: "",
-  //     price: 1300,
-  //   },
-  //   {
-  //     productId: 7,
-  //     name: "Textile",
-  //     description: "",
-  //     url: "https://mapny.store/assets/cache_image/img/catalog/saint-smoke-2_285x399_82d.webp",
-  //     price: 1300,
-  //   },
-  //   {
-  //     productId: 8,
-  //     name: "Textile",
-  //     description: "",
-  //     url: "https://mapny.store/assets/cache_image/img/catalog/leaves-eyes-frame_285x399_82d.webp",
-  //     price: 1300,
-  //   },
-  // ];
 
+export default function Home() {
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -80,7 +23,12 @@ export default function Home() {
       <main className={styles.main}>
         <section className="hero-section flex flex-col w-full ">
           <div className="hero-image-wrapper relative min-h-[260px] md:h-[75vh] lg:h-[80vh] ">
-            <Image layout="fill" objectFit="cover" src={heroImage} />
+            <Image
+              alt="Product Demo"
+              layout="fill"
+              objectFit="cover"
+              src={heroImage}
+            />
           </div>
           <div className="bg-oyster-bay hero-description text-center pt-8 px-12  md:absolute md:ml-12 md:top-2/4 md:-translate-y-2/4 md:max-w-[45%] md:text-left xl:ml-48 xl:pt-16 xl:px-24">
             <div className="hero-logo mb-8">
@@ -91,7 +39,9 @@ export default function Home() {
             </div>
 
             <div className="design-button-wrapper bg-secondary mb-16 w-40 h-12 items-center md:w-48 md:text-lg text-center flex align-middle justify-center">
-              <Link href="/editor" className="md:text-lg">Design your own</Link>
+              <Link href="/editor" className="md:text-lg">
+                Design your own
+              </Link>
             </div>
           </div>
         </section>
@@ -99,7 +49,12 @@ export default function Home() {
           <div className="how-to-landing text-center md:mt-28 max-h-[600px]">
             <div className="flex flex-col md:flex-row md:gap-x-8">
               <div className="image-wrapper md:grow md:basis-0 relative h-[300px] md:h-[600px]">
-                <Image src={demo} layout="fill" objectFit="cover" />
+                <Image
+                  alt="Product Demo"
+                  src={demo}
+                  layout="fill"
+                  objectFit="cover"
+                />
               </div>
               <div className="p-7 text-left md:grow md:basis-0 m-auto">
                 <div className=" ">
@@ -187,7 +142,12 @@ export default function Home() {
                 </div>
               </div>
               <div className="image-wrapper md:grow md:basis-0 relative h-[300px] md:h-[600px]">
-                <Image src={demo2} layout="fill" objectFit="cover" />
+                <Image
+                  alt="Product Demo"
+                  src={demo2}
+                  layout="fill"
+                  objectFit="cover"
+                />
               </div>
             </div>
           </div>
@@ -196,7 +156,12 @@ export default function Home() {
           <div className="how-to-landing text-center md:mt-16 max-h-[600px] ">
             <div className="flex flex-col md:flex-row md:gap-x-8">
               <div className="image-wrapper md:grow md:basis-0 relative h-[300px] md:h-[600px]">
-                <Image src={demo} layout="fill" objectFit="cover" />
+                <Image
+                  alt="Product Demo"
+                  src={demo}
+                  layout="fill"
+                  objectFit="cover"
+                />
               </div>
               <div className="p-7 text-left md:grow md:basis-0 m-auto">
                 <div className=" ">
@@ -223,7 +188,7 @@ export default function Home() {
               <Text className="mb-4 text-2xl">POPULAR POSTERS AND MAPS</Text>
               <div className="mt-8 justify-items-center  grid  gap-x-4 gap-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-flow-col 2xl:auto-cols-fr ">
                 {popularProducts.map((product) => (
-                  <div className="max-w-[250px]">
+                  <div key={product.productId} className="max-w-[250px]">
                     <ProductCard url={product.url} />
                   </div>
                 ))}

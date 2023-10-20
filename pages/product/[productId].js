@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
-import Breadcrumbs from "nextjs-antd-breadcrumbs";
 import SectionWrapper from "../../components/SectionWrapper";
-import Image from "next/image";
-import { Image as NextImage, Text, Input, Collapse, Dropdown } from "@nextui-org/react";
+import {
+  Image as NextImage,
+  Text,
+  Input,
+  Collapse,
+  Dropdown,
+} from "@nextui-org/react";
 import TypeSelection from "../../components/TypeSelection";
 import Button from "../../components/Button";
 const Product = () => {
@@ -26,36 +30,38 @@ const Product = () => {
     console.log(frame);
   };
   return (
-    <div className=''>
-      <SectionWrapper className='text-center'>
-        <div className='flex flex-col justify-center md:flex-row'>
-          <section className='product-image-section flex flex-col justify-center basis-0 md:grow md:justify-start md:max-w-[600px]'>
-            <div className=''>
+    <div className="">
+      <SectionWrapper className="text-center">
+        <div className="flex flex-col justify-center md:flex-row">
+          <section className="product-image-section flex flex-col justify-center basis-0 md:grow md:justify-start md:max-w-[600px]">
+            <div className="">
               <NextImage
-                alt='Default Image'
-                objectFit='cover'
-                src='https://static.wixstatic.com/media/f61af8_0e1d112d72604aae9e506c5919bd1696~mv2_d_2433_2987_s_4_2.png/v1/fill/w_480,h_590,al_c,q_90,usm_0.66_1.00_0.01/f61af8_0e1d112d72604aae9e506c5919bd1696~mv2_d_2433_2987_s_4_2.webp'
+                alt="Default Image"
+                objectFit="cover"
+                src="https://static.wixstatic.com/media/f61af8_0e1d112d72604aae9e506c5919bd1696~mv2_d_2433_2987_s_4_2.png/v1/fill/w_480,h_590,al_c,q_90,usm_0.66_1.00_0.01/f61af8_0e1d112d72604aae9e506c5919bd1696~mv2_d_2433_2987_s_4_2.webp"
               />
             </div>
-            <div className='hidden md:block mt-6'>
+            <div className="hidden md:block mt-6">
               <Text>{product.description}</Text>
             </div>
           </section>
-          <div className='space mt-8 md:mr-6' />
-          <section className='product-details-section basis-0 md:grow md:max-w-[455px]'>
+          <div className="space mt-8 md:mr-6" />
+          <section className="product-details-section basis-0 md:grow md:max-w-[455px]">
             <div>
               <Text
-                className='text-3xl'
+                className="text-3xl"
                 style={{
                   lineHeight: "1.2em",
-                }}>
+                }}
+              >
                 {product.title}
               </Text>
               <Text
-                className='text-xl'
+                className="text-xl"
                 style={{
                   lineHeight: "1.4em",
-                }}>
+                }}
+              >
                 {new Intl.NumberFormat("en-IN", {
                   style: "currency",
                   currency: "INR",
@@ -102,8 +108,8 @@ const Product = () => {
               />
               
             </div> */}
-              <div className='size-wrapper mt-4'>
-                <Text className='text-basw'>Size</Text>
+              <div className="size-wrapper mt-4">
+                <Text className="text-basw">Size</Text>
                 <TypeSelection
                   items={[
                     {
@@ -126,51 +132,60 @@ const Product = () => {
                   onChecked={setFrameType}
                 />
               </div>
-              <div className='quantity-wrapper mt-4'>
+              <div className="quantity-wrapper mt-4">
                 <Text>Quantity</Text>
                 <Dropdown>
                   <Dropdown.Button flat color={"black"}>
                     {selected}
                   </Dropdown.Button>
                   <Dropdown.Menu
-                    aria-label='Single selection actions'
+                    aria-label="Single selection actions"
                     disallowEmptySelection
-                    selectionMode='single'
+                    selectionMode="single"
                     selectedKeys={selected}
-                    onSelectionChange={setSelected}>
-                    <Dropdown.Item key='1'>1</Dropdown.Item>
-                    <Dropdown.Item key='2'>2</Dropdown.Item>
-                    <Dropdown.Item key='3'>3</Dropdown.Item>
-                    <Dropdown.Item key='4'>4</Dropdown.Item>
-                    <Dropdown.Item key='5'>5</Dropdown.Item>
+                    onSelectionChange={setSelected}
+                  >
+                    <Dropdown.Item key="1">1</Dropdown.Item>
+                    <Dropdown.Item key="2">2</Dropdown.Item>
+                    <Dropdown.Item key="3">3</Dropdown.Item>
+                    <Dropdown.Item key="4">4</Dropdown.Item>
+                    <Dropdown.Item key="5">5</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </div>
-              <div className='add-to-cart-wrapper mt-4 md:max-w-[355px]'>
-                <Button color='bg-tint-dark-gray'>Add to Cart</Button>
-                <div className='mt-2'>
+              <div className="add-to-cart-wrapper mt-4 md:max-w-[355px]">
+                <Button color="bg-tint-dark-gray">Add to Cart</Button>
+                <div className="mt-2">
                   <Button color={"bg-tint-black"}>Buy Now</Button>
                 </div>
               </div>
-              <div className='mt-4 md:hidden'>
+              <div className="mt-4 md:hidden">
                 <Text>{product.description}</Text>
               </div>
-              <div className='product-specification mt-4'>
+              <div className="product-specification mt-4">
                 <Collapse.Group accordion={false}>
-                  <Collapse title='Product Info'>
+                  <Collapse title="Product Info">
                     <Text>
-                      I'm a product detail. I'm a great place to add more information about your product such as sizing,
-                      material, care and cleaning instructions. This is also a great space to write what makes this
-                      product special and how your customers can benefit from this item. Buyers like to know what
-                      they’re getting before they purchase, so give them as much information as possible so they can buy
-                      with confidence and certainty.
+                      <Text>
+                        I&apos;m a product detail. I&apos;m a great place to add
+                        more information about your product such as sizing,
+                        material, care and cleaning instructions. This is also a
+                        great space to write what makes this product special and
+                        how your customers can benefit from this item. Buyers
+                        like to know what they&rsquo;re getting before they
+                        purchase, so give them as much information as possible
+                        so they can buy with confidence and certainty.
+                      </Text>
                     </Text>
                   </Collapse>
-                  <Collapse title='Return and Refund Policy'>
+                  <Collapse title="Return and Refund Policy">
                     <Text>
-                      I’m a Return and Refund policy. I’m a great place to let your customers know what to do in case
-                      they are dissatisfied with their purchase. Having a straightforward refund or exchange policy is a
-                      great way to build trust and reassure your customers that they can buy with confidence.
+                      I’m a Return and Refund policy. I’m a great place to let
+                      your customers know what to do in case they are
+                      dissatisfied with their purchase. Having a straightforward
+                      refund or exchange policy is a great way to build trust
+                      and reassure your customers that they can buy with
+                      confidence.
                     </Text>
                   </Collapse>
                 </Collapse.Group>

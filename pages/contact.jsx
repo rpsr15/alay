@@ -4,7 +4,6 @@ import Image from "next/image";
 //import backgoundImage from '/public/images/contact_background.webp'
 // import {writeContactUsMessage} from "../firebase";
 
-
 const AddressDetailsWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -49,10 +48,14 @@ const ContactFormWrapper = styled.div`
 // `;
 
 const PartitionLine = () => {
-  return <div style={{ borderTop: "2px solid black", width: "29px", height: "5px" }}></div>;
+  return (
+    <div
+      style={{ borderTop: "2px solid black", width: "29px", height: "5px" }}
+    ></div>
+  );
 };
 
-const contact = (props) => {
+export default function Contact() {
   const [name, setName] = useState("");
   const [remail, setremail] = useState("");
   const [message, setMessage] = useState("");
@@ -70,6 +73,7 @@ const contact = (props) => {
   };
   const handleSumbit = () => {
     console.log(name, remail, message, phoneNo);
+    // TODO: Implement gathering query
     // writeContactUsMessage(name, remail, phoneNo, message).then((success) => {
     //     setPhoneNo('')
     //     setName('')
@@ -80,12 +84,12 @@ const contact = (props) => {
     // })
   };
   return (
-    <div className='contact-wrapper overflow-hidden h-full'>
-      <div className='mx-8 mt-8 mb-5'>
-        <h2 className='text-4xl font-medium'>CONTACT</h2>
+    <div className="contact-wrapper overflow-hidden h-full">
+      <div className="mx-8 mt-8 mb-5">
+        <h2 className="text-4xl font-medium">CONTACT</h2>
       </div>
 
-      <AddressDetailsWrapper className='mx-8'>
+      <AddressDetailsWrapper className="mx-8">
         <AddressDetails>
           <div className="mb-2">
             <p> I-331 Rangoli Gardens</p>
@@ -96,13 +100,17 @@ const contact = (props) => {
             <p>Tel: +9181461219630</p>
             <p>remail: info@mysite.com</p>
           </div>
-          <div className="mt-4 mb-4">
-           icons
-          </div>
+          <div className="mt-4 mb-4">icons</div>
         </AddressDetails>
         <ContactFormWrapper>
           <form onSubmit={handleSumbit}>
-            <input required={true} value={name} name={"name"} onChange={handleChange} placeholder={"Name"} />
+            <input
+              required={true}
+              value={name}
+              name={"name"}
+              onChange={handleChange}
+              placeholder={"Name"}
+            />
             <input
               required={true}
               type={"remail"}
@@ -117,7 +125,7 @@ const contact = (props) => {
               onChange={handleChange}
               name={"phone"}
               value={phoneNo}
-              pattern='[0-9]{10}'
+              pattern="[0-9]{10}"
               placeholder={"Phone"}
             />
             <input
@@ -127,14 +135,12 @@ const contact = (props) => {
               onChange={handleChange}
               placeholder={"Type your message here..."}
             />
-            <button type={"submit"} className="bg-tranparent">Submit</button>
+            <button type={"submit"} className="bg-tranparent">
+              Submit
+            </button>
           </form>
         </ContactFormWrapper>
       </AddressDetailsWrapper>
     </div>
   );
-};
-
-contact.propTypes = {};
-
-export default contact;
+}

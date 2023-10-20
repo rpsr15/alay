@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-const ConditionalGroup = ({ contents, activeIndex }) => {
-  const [activeIndex, setActiveIndex] = useState(activeIndex);
+const ConditionalGroup = ({ contents, defaultIndex }) => {
+  const [activeIndex, setActiveIndex] = useState(defaultIndex);
   const handleItemClick = (index) => {
    
     setActiveIndex(index);
@@ -9,7 +9,7 @@ const ConditionalGroup = ({ contents, activeIndex }) => {
   return (
     <div className='flex flex-row w-full'>
       {contents?.map((content, index) => (
-        <div className={`text-center grow`} onClick={() => handleItemClick(index)}>
+        <div key={content} className={`text-center grow`} onClick={() => handleItemClick(index)}>
           {content.render(index === activeIndex ? true: false)}
         </div>
       ))}
